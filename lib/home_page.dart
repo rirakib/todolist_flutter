@@ -19,14 +19,14 @@ class _HomePageState extends State < HomePage > {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('To do list', style: TextStyle(
+        title: const Text('To do list', style: TextStyle(
           fontSize: 30
         ), ), centerTitle: true,
       ),
       body: Container(
         color: Colors.amber,
-        padding: EdgeInsets.fromLTRB(30, 20, 30, 20),
-        child: title.length == 0 ? Center(child: Text('You have not any task'), ) : ListView.builder(itemBuilder: (context, index) {
+        padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+        child: title.length == 0 ? const Center(child: Text('You have not any task'), ) : ListView.builder(itemBuilder: (context, index) {
             return Column(
               children: [
                 Card(
@@ -61,7 +61,7 @@ class _HomePageState extends State < HomePage > {
                   Text('Add Your Title'),
                   TextField(
                     controller: titleController,
-                    decoration: InputDecoration(border: OutlineInputBorder(),
+                    decoration: const InputDecoration(border: OutlineInputBorder(),
                       hintText: 'hobe kichu akta',
                     ),
                   ),
@@ -86,8 +86,11 @@ class _HomePageState extends State < HomePage > {
                 }, child: Text('Clear')
                 ),
                 TextButton(onPressed: (){
-                    title.add(titleController.text);
-                    date.add(dateController.text);
+                    if(!(titleController.text == ""))
+                    {
+                      title.add(titleController.text);
+                      date.add(dateController.text);
+                    }
                     titleController.clear();
                     dateController.clear();
                     Navigator.pop(context);
